@@ -1,0 +1,36 @@
+[
+    {
+        "title": "18 Drifting Shadow Way, Las Vegas, NV 89135",
+        "description": "",
+        "address": "18 Drifting Shadow Way, Las Vegas, NV 89135",
+        "latitude": "36.110109",
+        "longitude": "-115.339278",
+        "price": "2,900,000",
+        "created_date": "February 19, 2016",
+        "agent": {
+            "name": "Single Family Home"
+        },
+        "images": [
+            "http://ap.rdcpix.com/1336223315/a78b1c7c212722d0eeaaeb390b31cc33l-m0xd-w640_h480_q80.jpg",
+            "http://ap.rdcpix.com/1496344611/a78b1c7c212722d0eeaaeb390b31cc33l-m1xd-w640_h480_q80.jpg",
+            "http://ap.rdcpix.com/1496344611/a78b1c7c212722d0eeaaeb390b31cc33l-m1xd-w640_h480_q80.jpg"
+        ]
+    },
+    {
+        "title": "2876 Josephine Dr, Henderson, NV 89044",
+        "description": "",
+        "address": "12876 Josephine Dr, Henderson, NV 89044",
+        "latitude": "35.924414",
+        "longitude": "-115.096044",
+        "price": "578,000",
+        "created_date": "February 19, 2016",
+        "agent": {
+            "name": "Single Family Home"
+        },
+        "images": [
+            "http://ap.rdcpix.com/142029107/c3d5b8c65584d753a1a3a35898451bedl-m0xd-w640_h480_q80.jpg",
+            "http://ap.rdcpix.com/1176702658/c3d5b8c65584d753a1a3a35898451bedl-m1xd-w640_h480_q80.jpg",
+            "http://ap.rdcpix.com/1811970413/c3d5b8c65584d753a1a3a35898451bedl-m2xd-w640_h480_q80.jpg"
+        ]
+    }
+]
