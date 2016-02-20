@@ -47,18 +47,21 @@ $icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/"
 
   .list {
     .estate {
-        width: 100%;
+        // width: 100%;
         // min-height: 180px;
         // float:left;
         .estate-avatar {
           padding: 10px;
-          width: 180px;
+          // width: 180px;
           height: 100px;
           float: left;
           
         }
 
         .estate-details {
+          float: left;
+        }
+        .estate-functions {
           float: left;
         }
     }
