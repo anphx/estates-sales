@@ -15,9 +15,9 @@ class Api::V1::OrdersController < ApplicationController
     order.build_order_items_with_product_ids_and_quantities(params[:order][:product_ids_and_quantities])
     if order.save
       order.reload
-      render json: order, status: 201, location: [:api, current_user, order]
+      render json: order, status: :created, location: [:api, current_user, order]
     else
-      render json: { errors: order.errors }, status: 422
+      render json: { errors: order.errors }, status: :unprocessable_entity
     end
   end
 

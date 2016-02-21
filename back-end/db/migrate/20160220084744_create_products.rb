@@ -5,7 +5,7 @@ class CreateProducts < ActiveRecord::Migration
       t.decimal :price, default: 0.0
       t.boolean :published, default: false
       t.integer :user_id
-      t.text :description, default: ''
+      t.text :description
 
       t.timestamps
     end
