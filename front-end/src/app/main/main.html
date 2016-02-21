@@ -19,7 +19,7 @@
               </header>
 
               <div class="list-group row">
-                <a class="col-md-12 list-group-item estate" ng-repeat="estate in main.data" href="/#">
+                <div class="col-md-12 list-group-item estate" ng-repeat="estate in main.data" ng-click="main.viewDetail(estate.id)">
                   <img class="col-md-5 estate-avatar" ng-src="{{ estate.images.split('||')[0] }}" alt="{{ estate.title }}" />
                   <div class="col-md-7 estate-details">
                     <h4>
@@ -31,9 +31,9 @@
                     <p>
                       {{ estate.created_date }}
                     </p>
-                    <button class="btn btn-primary">View Details</button>
+                    <!-- <button class="btn btn-primary" ng-click="main.viewDetail(estate.id)">View Details</button> -->
                   </div>
-                </a>
+                </div>
               </div>
               <div class="footer">
               </div>

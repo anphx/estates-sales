@@ -2,25 +2,50 @@
   'use strict';
   angular.module('gulpGenerator').controller('DashboardController', DashboardController);
   /** @ngInject */
-  function DashboardController(EstateService) {
+  function DashboardController(DTOptionsBuilder, EstateService, DashboardService) {
     var vm = this;
-    vm.map = {
-      center: {
-        latitude: 51.219053,
-        longitude: 4.404418
-      },
-      zoom: 14
+    
+    vm.products = [];
+    vm.dtOptions = DTOptionsBuilder.newOptions()
+        .withPaginationType('simple_numbers')
+        .withDisplayLength(5)
+        .withDOM('pitrfl');
+
+    DashboardService.getProducts().success(function(response) {
+      vm.products = response.dashboard;
+    });
+
+    vm.productsByCity = {
+      data: [],
+      labels: []
     };
-    vm.options = {
-      scrollwheel: false
-    };
-    vm.data = [];
-    EstateService.getEstates(function(data, error) {
-      if (error != null) {
-        alert(error.message);
-        return;
+    DashboardService.getProductsByCity().success(function(response){
+      for(var key in response){
+        vm.productsByCity.labels.push(key);
+        vm.productsByCity.data.push(response[key]);
       }
-      vm.data = data;
+    }).error(function(){
+      alert('Error in loading products by city.');
+    });
+
+
+    vm.ordersByCity = {
+      data: [[]],
+      labels: [],
+      series: ['orders'],
+      options: {
+        scaleBeginAtZero : false,
+        barDatasetSpacing : 1
+      }
+    };
+
+    DashboardService.getOrdersByCity().success(function(response) {
+      for(var key in response) {
+        vm.ordersByCity.labels.push(key);
+        vm.ordersByCity.data[0].push(response[key]);
+      }
+    }).error(function(){
+      alert('Error in loading orders by city.');
     });
   }
 })();

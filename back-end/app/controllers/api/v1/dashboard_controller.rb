@@ -13,7 +13,7 @@ class Api::V1::DashboardController < ApplicationController
   end
 
   def orders_by_city
-    render json: products_by_city_json, status: :ok
+    render json: orders_by_city_json, status: :ok
   end
 
   private
@@ -22,7 +22,7 @@ class Api::V1::DashboardController < ApplicationController
     Product.joins(:address).group("addresses.city").count
   end
 
-  def orders_by_city
+  def orders_by_city_json
     Order.joins(order_items: { product: :address }).group("addresses.city").count
   end
 

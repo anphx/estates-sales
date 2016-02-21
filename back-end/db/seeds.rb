@@ -30,10 +30,6 @@ image_list = [
   "http://ap.rdcpix.com/785002956/4fa09a2ee35e52f84b026696f715411fl-m0xd-w480_h480_q80.jpg"
 ]
 
-image_urls = [].tap do |array|
-  4.times { array << image_list.sample }
-end.join("||")
-
 city_list = [].tap do |array|
   10.times {array << FFaker::AddressUS.city}
 end
@@ -44,6 +40,9 @@ end
 
 60.times do 
   user = User.offset(rand(User.count)).first
+  image_urls = [].tap do |array|
+    4.times { array << image_list.shuffle.first }
+  end.join("||")
   product = FactoryGirl.create :product, user: user, images: image_urls, stock: rand(100), price: rand(100000).to_f, title: FFaker::Company.name, description: FFaker::Lorem.paragraphs
   address = FactoryGirl.create :address, location: FFaker::AddressUS.street_address, longitude: FFaker::Geolocation.lng, latitude: FFaker::Geolocation.lat, city: city_list.sample, product: product
 end

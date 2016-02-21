@@ -2,7 +2,7 @@
   'use strict';
   angular.module('gulpGenerator').controller('MainController', MainController);
   /** @ngInject */
-  function MainController(EstateService) {
+  function MainController($state, EstateService) {
     var vm = this;
     initialize();
     vm.data = [];
@@ -30,5 +30,9 @@
       initialize();
     };
     
+    vm.viewDetail = function(id) {
+      debugger;
+      $state.go('detail', {id: id});
+    }
   }
 })();
