@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160220124059) do
+ActiveRecord::Schema.define(version: 20160221031838) do
 
   create_table "order_item", force: true do |t|
     t.integer  "order_id"
@@ -70,6 +70,9 @@ ActiveRecord::Schema.define(version: 20160220124059) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "auth_token",             default: ""
+    t.integer  "role",                   default: 3
+    t.string   "full_name",              default: ""
+    t.string   "avatar_url",             default: ""
   end
 
   add_index "users", ["auth_token"], name: "index_users_on_auth_token", unique: true, using: :btree

@@ -12,6 +12,12 @@ class User < ActiveRecord::Base
   has_many :products, dependent: :destroy
   has_many :orders, dependent: :destroy
 
+  USER_ROLES = {
+    (ADMIN = 0) => 'Admin',
+    (AGENT = 1) => 'Agent',
+    (CUSTOMER = 3) => 'Customer'
+  }
+
   def generate_authentication_token!
     new_token = ''
     begin
