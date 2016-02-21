@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160221044557) do
+ActiveRecord::Schema.define(version: 20160221102322) do
 
   create_table "addresses", force: true do |t|
     t.string   "location"
@@ -20,9 +20,19 @@ ActiveRecord::Schema.define(version: 20160221044557) do
     t.integer  "product_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "city"
   end
 
   add_index "addresses", ["product_id"], name: "index_addresses_on_product_id", using: :btree
+
+  create_table "addressses", force: true do |t|
+    t.string  "location"
+    t.string  "longtitude"
+    t.string  "latitude"
+    t.integer "product_id"
+  end
+
+  add_index "addressses", ["product_id"], name: "index_addressses_on_product_id", using: :btree
 
   create_table "order_item", force: true do |t|
     t.integer  "order_id"

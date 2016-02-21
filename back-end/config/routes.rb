@@ -10,6 +10,13 @@ Rails.application.routes.draw do
       end
       resources :sessions, :only => [:create, :destroy]
       resources :products, :only => [:show, :index]
+      resources :dashboard, only: [] do
+        collection do
+          get "product_list"
+          get "products_by_city"
+          get "orders_by_city"
+        end
+      end
     end
   end
 end

@@ -23,15 +23,35 @@ image_list = [
   "http://ap.rdcpix.com/1811970413/c3d5b8c65584d753a1a3a35898451bedl-m2xd-w640_h480_q80.jpg"
 ]
 
+image_urls = [].tap do |array|
+  4.times { array << image_list.sample }
+end.join("||")
+
+city_list = [].tap do |array|
+  10.times {array << FFaker::AddressUS.city}
+end
+
 user_list.each do |email, password, role|
   user = User.create(email: email, password: password, role: role, avatar_url: FFaker::Avatar.image, full_name: FFaker::Name.name)  
 end
 
-30.times do 
+60.times do 
   user = User.offset(rand(User.count)).first
-  image_urls = [].tap do |array|
-    3.times { array << image_list.sample }
-  end.join("||")
-  product = FactoryGirl.create :product, user: user, images: image_urls, price: rand(100000).to_f, title: FFaker::Company.name
-  address = FactoryGirl.create :address, location: FFaker::AddressUS.street_address, longitude: FFaker::Geolocation.lng, latitude: FFaker::Geolocation.lat, product: product
+  product = FactoryGirl.create :product, user: user, images: image_urls, stock: rand(100), price: rand(100000).to_f, title: FFaker::Company.name, description: FFaker::Lorem.paragraphs
+  address = FactoryGirl.create :address, location: FFaker::AddressUS.street_address, longitude: FFaker::Geolocation.lng, latitude: FFaker::Geolocation.lat, city: city_list.sample, product: product
+end
+
+20.times do
+  user = User.offset(rand(User.count)).first
+
+  product_1 = Product.offset(rand(Product.count)).first
+  product_2 = Product.offset(rand(Product.count)).first
+
+  order_item_1 = FactoryGirl.build :order_item, product: product_1, quantity: 1
+  order_item_2 = FactoryGirl.build :order_item, product: product_2, quantity: 1
+
+  @order = FactoryGirl.create :order, user: user
+
+  @order.order_items << order_item_1
+  @order.order_items << order_item_2
 end

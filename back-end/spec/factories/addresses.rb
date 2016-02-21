@@ -3,6 +3,7 @@ FactoryGirl.define do
     location "MyString"
     longitude "MyString"
     latitude "MyString"
-    product nil
+    city { FFaker::AddressUS.city }
+    product
   end
 end
