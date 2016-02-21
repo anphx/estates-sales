@@ -1,10 +1,11 @@
 (function() {
     'use strict';
-    angular.module('gulpGenerator').service('EstateService', ['$http', estateService]);
+    angular.module('gulpGenerator').service('EstateService', EstateService);
     /** @ngInject */
-    function estateService($http) {
+    function EstateService($http) {
         this.getEstates = function(callback) {
-            $http.get('../data/estate.json').then(function(res) {
+          var apiUrl = 'http://localhost:1337/localhost:3000/api/products';
+            $http.get(apiUrl).then(function(res) {
               // success callback
               callback(res.data, null);
             }, function(res) {

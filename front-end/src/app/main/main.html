@@ -1,61 +1,56 @@
 <div class="container-fluid">
-    <div>
-        <acme-navbar creation-date="main.creationDate">
-        </acme-navbar>
-    </div>
-    <!--
-        <div id="map_canvas" ng-controller="MainController">
-            <ui-gmap-google-map center="main.map.center" zoom="main.map.zoom" options="main.options">
-            </ui-gmap-google-map>
-        </div>
-    -->
-    <!--
-        <script src='http://maps.google.cn/maps/api/js?sensor=false'>
-        </script>
-    -->
-    <div class="row">
-        <div class="col-md-4">
-            <div class="estates-container">
-                <header class="header">
-                    <div class="btn-group" role="group" aria-label="...">
-                        <button type="button" class="btn btn-default">
-                            List
-                        </button>
-                        <button type="button" class="btn btn-default">
-                            Map
-                        </button>
-                    </div>
-                </header>
-                <div class="list row">
-                    <div class="col-md-12 estate" ng-repeat="estate in main.data">
-                        <img class="col-md-3 estate-avatar" ng-src="{{ estate.images[0] }}" alt="{{ estate.title }}"/>
-                        <div class="col-md-9 estate-details">
-                            <h3>
-                                {{ estate.title }}
-                            </h3>
-                            <p>
-                                {{ estate.price }}
-                            </p>
-                            <p>
-                                {{ estate.created_date }}
-                            </p>
-                        </div>
-                        <div class="col-md-12 estate-funtions">
-                            <button class="btn btn-primary">
-                                View Details
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="footer">
-                </div>
+  <div>
+    <acme-navbar creation-date="main.creationDate">
+    </acme-navbar>
+  </div>
+  <!--
+  <div id="map_canvas" ng-controller="MainController">
+    <ui-gmap-google-map center="main.map.center" zoom="main.map.zoom" options="main.options">
+    </ui-gmap-google-map>
+  </div>
+  -->
+  <!--
+  <script src='http://maps.google.cn/maps/api/js?sensor=false'>
+  </script>
+  -->
+  <div class="row">
+    <div class="col-md-4">
+      <div class="estates-container">
+        <header class="header">
+          <div class="btn-group" role="group" aria-label="...">
+            <input type="search" placeholder="Type to search" />
+          </div>
+        </header>
+        <div class="list row">
+          <div class="col-md-12 estate" ng-repeat="estate in main.data">
+            <img class="col-md-3 estate-avatar" ng-src="{{ estate.images.split('||')[0] }}" alt="{{ estate.title }}"/>
+            <div class="col-md-9 estate-details">
+              <h3>
+              {{ estate.title }}
+              </h3>
+              <p>
+                {{ estate.price | currency }}
+              </p>
+              <p>
+                {{ estate.created_date }}
+              </p>
             </div>
+            <div class="col-md-12 estate-funtions">
+              <button class="btn btn-primary">
+              View Details
+              </button>
+            </div>
+          </div>
         </div>
-        <div class="col-md-8">
-            <ui-gmap-google-map center="main.map.center" zoom="main.map.zoom" options="main.options">
-                <ui-gmap-marker ng-repeat="estate in main.data" coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
-        </ui-gmap-marker>
-            </ui-gmap-google-map>
+        <div class="footer">
         </div>
+      </div>
     </div>
+    <div class="col-md-8">
+      <ui-gmap-google-map center="main.map.center" zoom="main.map.zoom" options="main.options">
+      <ui-gmap-marker ng-repeat="estate in main.data" coords="estate.address" idkey="estate.id">
+      </ui-gmap-marker>
+      </ui-gmap-google-map>
+    </div>
+  </div>
 </div>

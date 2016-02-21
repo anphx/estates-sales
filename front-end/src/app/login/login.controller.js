@@ -1,21 +1,39 @@
 (function() {
   'use strict';
-  angular.module('gulpGenerator').controller('LoginController', ['$uibModalInstance', '$state', 'UserService', LoginController]);
+  angular.module('gulpGenerator').controller('LoginController', LoginController);
   /** @ngInject */
-  function LoginController($uibModalInstance, $state, UserService) {
+  function LoginController($uibModalInstance, $state, $sessionStorage, appConfig, UserService) {
     var vm = this;
+    vm.user = {
+      email: 'anpham@mail.vn',
+      password: '12345678'
+    };
+
     vm.login = function() {
-      console.log(vm.user.username + '-' + vm.user.password);
-      UserService.login(vm.user, function(user, error) {
-        if (error != null) {
-          alert(error.message);
-        }
-        if (user.role == 1) $state.go('dashboard');
-        // if()
+      UserService.login(vm.user).success(function(response) {
+        $uibModalInstance.dismiss('cancel');
+        navigateUserToPage($sessionStorage.user);
+      }).error(function(response) {
+        vm.message = response.errors;
       });
     };
+
     vm.cancel = function() {
       $uibModalInstance.dismiss('cancel');
     };
+
+    function navigateUserToPage(user) {
+      // alert ('navigating....', user);
+      switch(user.role) {
+        case appConfig.userRole.admin: 
+          $state.go('dashboard');
+          break;
+        default:
+          $state.go('home');
+          break;
+      }
+    };
+    
   }
+
 })();

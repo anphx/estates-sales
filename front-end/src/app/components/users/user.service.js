@@ -1,28 +1,25 @@
 (function() {
-    'use strict';
-    angular.module('gulpGenerator').service('UserService', ['$http', UserService]);
-    /** @ngInject */
-    function UserService($http) {
-        this.login = function(user, callback) {
-            $http.get('../data/users.json').then(function(res) {
-              // success callback
-              var flag = true;
-              $.each(res.data, function(index, u){
-                console.log(u.email + '-' + u.password);
-                // debugger;
-                if(user.email == u.email && user.password == u.password){
-                  callback(u, null);
-
-                  flag = false;
-                }
-              });
-              
-              if(flag)
-                callback(null, new Error('Username or password is wrong.'));
-            }, function(res) {
-              // error callback
-              callback(null, new Error('Error when loggin.'));
-            })
-        };
-    }
+  'use strict';
+  angular.module('gulpGenerator').service('UserService', UserService);
+  /** @ngInject */
+  function UserService($http, $sessionStorage, appConfig) {
+    this.login = function(user) {
+      var apiUrl = appConfig.apiBaseUri + 'sessions';
+      return $http({
+        method: 'POST',
+        url: apiUrl,
+        data: {
+          session: {
+            email: user.email,
+            password: user.password
+          }
+        }
+      }).success(function(response) {
+        $sessionStorage.user = response.user;
+        $sessionStorage.sessionId = response.user.auth_token;
+      }).error(function(error) {
+        return new Error('Username or password is wrong.');
+      });
+    };
+  }
 })();
