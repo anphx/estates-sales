@@ -9,10 +9,10 @@
               <!-- Search header -->
               <header class="sidebar-search">
                 <div class="input-group custom-search-form">
-                  <input type="text" class="form-control" placeholder="Search...">
+                  <input type="text" class="form-control" placeholder="Search..." ng-model="main.keyword">
                   <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">
-                    <i class="fa fa-search"></i>
+                    <button class="btn btn-default" type="button" ng-click="main.search()">
+                      <i class="fa fa-search"></i>
                     </button>
                   </span>
                 </div>
@@ -39,7 +39,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-8">
+          <div class="col-md-7" style="margin-top: 15px;">
             <ui-gmap-google-map center="main.map.center" zoom="main.map.zoom" options="main.options">
             <ui-gmap-marker ng-repeat="estate in main.data" coords="estate.address" idkey="estate.id">
             </ui-gmap-marker>

@@ -4,24 +4,31 @@
   /** @ngInject */
   function MainController(EstateService) {
     var vm = this;
-    vm.map = {
-      center: {
-        latitude: 36.110109,
-        longitude: -115.339278
-      },
-      zoom: 14
-    };
-    vm.options = {
-      scrollwheel: false
+    initialize();
+    vm.data = [];
+
+    function initialize() {
+      var params = vm.keyword ? "?keyword=" + vm.keyword : "";
+      EstateService.getEstates(params).success(function(response) {
+        vm.data = response.products.slice(0,10);
+        vm.map = {
+          center: {
+            latitude: vm.data[0].address.latitude,
+            longitude: vm.data[0].address.longitude
+          },
+          zoom: 5
+        };
+        vm.options = {
+          scrollwheel: false
+        };
+      }).error(function(response) {
+        alert(response.errors);
+      });
     };
 
-    vm.data = [];
-    EstateService.getEstates(function(data, error) {
-      if (error != null) {
-        alert(error.message);
-        return;
-      }
-      vm.data = data.products.slice(0,10);
-    });
+    vm.search = function() {
+      initialize();
+    };
+    
   }
 })();
