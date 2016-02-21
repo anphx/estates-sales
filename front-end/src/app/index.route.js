@@ -13,6 +13,11 @@
       templateUrl: 'app/dashboard/dashboard.html',
       controller: 'DashboardController',
       controllerAs: 'dashboard'
+    }).state('detail', {
+      url: '/detail/:id',
+      templateUrl: 'app/detail/detail.html',
+      controller: 'MainController',
+      controllerAs: 'main'
     });
     
     $urlRouterProvider.otherwise('/');

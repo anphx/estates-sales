@@ -1,56 +1,54 @@
-<div class="container-fluid">
-  <div>
-    <acme-navbar creation-date="main.creationDate">
-    </acme-navbar>
-  </div>
-  <!--
-  <div id="map_canvas" ng-controller="MainController">
-    <ui-gmap-google-map center="main.map.center" zoom="main.map.zoom" options="main.options">
-    </ui-gmap-google-map>
-  </div>
-  -->
-  <!--
-  <script src='http://maps.google.cn/maps/api/js?sensor=false'>
-  </script>
-  -->
-  <div class="row">
-    <div class="col-md-4">
-      <div class="estates-container">
-        <header class="header">
-          <div class="btn-group" role="group" aria-label="...">
-            <input type="search" placeholder="Type to search" />
-          </div>
-        </header>
-        <div class="list row">
-          <div class="col-md-12 estate" ng-repeat="estate in main.data">
-            <img class="col-md-3 estate-avatar" ng-src="{{ estate.images.split('||')[0] }}" alt="{{ estate.title }}"/>
-            <div class="col-md-9 estate-details">
-              <h3>
-              {{ estate.title }}
-              </h3>
-              <p>
-                {{ estate.price | currency }}
-              </p>
-              <p>
-                {{ estate.created_date }}
-              </p>
-            </div>
-            <div class="col-md-12 estate-funtions">
-              <button class="btn btn-primary">
-              View Details
-              </button>
+<div id="wrapper" class="main-page">
+  <acme-navbar creation-date="main.creationDate"></acme-navbar>
+  <div id="page-wrapper">
+    <div class="container-fluid">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-5">
+            <div class="estates-container">
+              <!-- Search header -->
+              <header class="sidebar-search">
+                <div class="input-group custom-search-form">
+                  <input type="text" class="form-control" placeholder="Search...">
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">
+                    <i class="fa fa-search"></i>
+                    </button>
+                  </span>
+                </div>
+              </header>
+
+              <div class="list-group row">
+                <a class="col-md-12 list-group-item estate" ng-repeat="estate in main.data" href="/#">
+                  <img class="col-md-5 estate-avatar" ng-src="{{ estate.images.split('||')[0] }}" alt="{{ estate.title }}" />
+                  <div class="col-md-7 estate-details">
+                    <h4>
+                      {{ estate.title }}
+                    </h4>
+                    <p>
+                      {{ estate.price | currency }}
+                    </p>
+                    <p>
+                      {{ estate.created_date }}
+                    </p>
+                    <button class="btn btn-primary">View Details</button>
+                  </div>
+                </a>
+              </div>
+              <div class="footer">
+              </div>
             </div>
           </div>
+          <div class="col-md-7">
+            <ui-gmap-google-map center="main.map.center" zoom="main.map.zoom" options="main.options">
+            <ui-gmap-marker ng-repeat="estate in main.data" coords="estate.address" idkey="estate.id">
+            </ui-gmap-marker>
+            </ui-gmap-google-map>
+          </div>
         </div>
-        <div class="footer">
-        </div>
+          <!-- /.row -->
       </div>
-    </div>
-    <div class="col-md-8">
-      <ui-gmap-google-map center="main.map.center" zoom="main.map.zoom" options="main.options">
-      <ui-gmap-marker ng-repeat="estate in main.data" coords="estate.address" idkey="estate.id">
-      </ui-gmap-marker>
-      </ui-gmap-google-map>
+      <!-- /.container-fluid -->
     </div>
   </div>
 </div>

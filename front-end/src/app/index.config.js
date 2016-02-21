@@ -19,9 +19,9 @@
 
     // config google map
     uiGmapGoogleMapApiProvider.configure({
-        key: 'AIzaSyAX0w9aA8rm7NZfI4EEWeiZG0RRnO_3X-A',
-        v: '3.22', //defaults to latest 3.X anyhow
-        libraries: 'weather,geometry,visualization'
+      key: 'AIzaSyAX0w9aA8rm7NZfI4EEWeiZG0RRnO_3X-A',
+      v: '3.22', //defaults to latest 3.X anyhow
+      libraries: 'weather,geometry,visualization'
     });
   }
 

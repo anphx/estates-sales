@@ -45,25 +45,49 @@ $icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/"
   
   }
 
-  .list {
+  .list-group {
+    margin: 0;
     .estate {
-        // width: 100%;
-        // min-height: 180px;
-        // float:left;
-        .estate-avatar {
-          padding: 10px;
-          // width: 180px;
-          height: 100px;
-          float: left;
-          
+      &.list-group-item {
+        margin-top: 5px;
+        padding: 10px;
+        &:hover {
+          background-color: #f5f5f5;
         }
+      }
+      .estate-avatar {
+        height: 150px;
+        padding-left: 0;
+      }
 
-        .estate-details {
-          float: left;
-        }
-        .estate-functions {
-          float: left;
-        }
+      .estate-details {
+        float: left;
+      }
+      .estate-functions {
+        float: left;
+      }
     }
+  }
+}
+
+.nav.navbar-top-links {
+  li.dropdown {
+    display: inline-block;
+  }
+}
+
+.sidebar {
+  margin: 0;
+}
+
+.main-page {
+  #page-wrapper {
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+  }
+
+  .sidebar-search {
+    margin-top: 15px;
   }
 }
