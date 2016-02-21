@@ -24,15 +24,6 @@ ActiveRecord::Schema.define(version: 20160221044557) do
 
   add_index "addresses", ["product_id"], name: "index_addresses_on_product_id", using: :btree
 
-  create_table "addressses", force: true do |t|
-    t.string  "location"
-    t.string  "longtitude"
-    t.string  "latitude"
-    t.integer "product_id"
-  end
-
-  add_index "addressses", ["product_id"], name: "index_addressses_on_product_id", using: :btree
-
   create_table "order_item", force: true do |t|
     t.integer  "order_id"
     t.integer  "product_id"

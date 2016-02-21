@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :address do
     location "MyString"
-    longtitude "MyString"
+    longitude "MyString"
     latitude "MyString"
     product nil
   end
