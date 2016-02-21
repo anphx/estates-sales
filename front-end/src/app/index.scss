@@ -76,8 +76,20 @@ $icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/"
   }
 }
 
+.chat-panel {
+  .chat-body {
+    height: 100px;
+  }
+}
+
 .sidebar {
   margin: 0;
+}
+
+.estate-photo-slider {
+  img {
+    width: 100%;
+  }
 }
 
 .main-page {

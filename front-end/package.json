@@ -1,7 +1,9 @@
 {
   "name": "gulpGenerator",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "corsproxy": "^1.4.0"
+  },
   "scripts": {
     "test": "gulp test"
   },

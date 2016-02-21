@@ -16,8 +16,8 @@
     }).state('detail', {
       url: '/detail/:id',
       templateUrl: 'app/detail/detail.html',
-      controller: 'MainController',
-      controllerAs: 'main'
+      controller: 'DetailController',
+      controllerAs: 'detail'
     });
     
     $urlRouterProvider.otherwise('/');

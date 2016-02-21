@@ -17,8 +17,6 @@
       }).success(function(response) {
         $sessionStorage.user = response.user;
         $sessionStorage.sessionId = response.user.auth_token;
-      }).error(function(error) {
-        return new Error('Username or password is wrong.');
       });
     };
   }
