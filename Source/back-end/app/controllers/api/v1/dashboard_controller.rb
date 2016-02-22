@@ -1,7 +1,7 @@
 class Api::V1::DashboardController < ApplicationController
-  # before_action :authenticate_with_token!
+  before_action :authenticate_with_token!
   respond_to :json
-  PER_PAGE = 10
+  PER_PAGE = 100
   PAGE = 1
 
   def product_list
