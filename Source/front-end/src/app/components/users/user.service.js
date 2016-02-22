@@ -3,6 +3,25 @@
   angular.module('gulpGenerator').service('UserService', UserService);
   /** @ngInject */
   function UserService($http, $sessionStorage, appConfig) {
+    var that = this;
+
+    this.getCurrentUser = function() {
+      return $sessionStorage.user;
+    }
+    this.setCurrentUser = function(user) {
+      $sessionStorage.user = user;
+      $sessionStorage.sessionId = user.auth_token;
+    }
+
+    this.logout = function() {
+      delete $sessionStorage.user;
+      delete $sessionStorage.sessionId;
+    }
+
+    this.isLoggedIn = function(){
+      return $sessionStorage.user != null;
+    }
+
     this.login = function(user) {
       var apiUrl = appConfig.apiBaseUri + 'sessions';
       return $http({
@@ -15,8 +34,7 @@
           }
         }
       }).success(function(response) {
-        $sessionStorage.user = response.user;
-        $sessionStorage.sessionId = response.user.auth_token;
+        that.setCurrentUser(response.user);
       });
     };
   }

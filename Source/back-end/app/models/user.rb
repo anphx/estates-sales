@@ -13,8 +13,8 @@ class User < ActiveRecord::Base
   has_many :orders, dependent: :destroy
 
   USER_ROLES = {
-    (ADMIN = 0) => 'Admin',
-    (AGENT = 1) => 'Agent',
+    (ADMIN = 1) => 'Admin',
+    (AGENT = 2) => 'Agent',
     (CUSTOMER = 3) => 'Customer'
   }
 

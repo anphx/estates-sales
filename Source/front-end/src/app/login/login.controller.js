@@ -11,8 +11,8 @@
 
     vm.login = function() {
       UserService.login(vm.user).success(function(response) {
-        $uibModalInstance.dismiss('cancel');
-        navigateUserToPage($sessionStorage.user);
+        $uibModalInstance.close(UserService.getCurrentUser());
+        // navigateUserToPage($sessionStorage.user);
       }).error(function(response) {
         vm.message = response.errors;
       });
@@ -22,17 +22,6 @@
       $uibModalInstance.dismiss('cancel');
     };
 
-    function navigateUserToPage(user) {
-      // alert ('navigating....', user);
-      switch(user.role) {
-        case appConfig.userRole.admin: 
-          $state.go('dashboard');
-          break;
-        default:
-          $state.go('home');
-          break;
-      }
-    };
     
   }
 

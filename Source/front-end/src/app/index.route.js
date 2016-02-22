@@ -13,6 +13,11 @@
       templateUrl: 'app/dashboard/dashboard.html',
       controller: 'DashboardController',
       controllerAs: 'dashboard'
+    }).state('agent', {
+      url: '/agent',
+      templateUrl: 'app/agent/agent.html',
+      controller: 'AgentController',
+      controllerAs: 'agent'
     }).state('detail', {
       url: '/detail/:id',
       templateUrl: 'app/detail/detail.html',

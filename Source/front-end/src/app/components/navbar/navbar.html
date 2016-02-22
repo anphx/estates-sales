@@ -19,13 +19,54 @@
     </a>
   </div>
   <!-- /.navbar-header -->
-  <ul class="nav navbar-top-links navbar-right">
-    <li class="dropdown">
-      <a href ng-click="!userLoggedIn && vm.open()">
+  <ul uib-dropdown class="nav navbar-top-links navbar-right">
+    <li class="dropdown" ng-if="!vm.isLoggedIn()">
+      <a href='#' ng-click="!userLoggedIn() && vm.open()">
         <i class="fa fa-user fa-fw">
         </i>
-        {{ vm.loginText }}
+        Sign in
       </a>
+    </li>
+    <li class="dropdown" uib-dropdown ng-if="vm.isLoggedIn()">
+      <a uib-dropdown-toggle >
+      <img ng-src="{{vm.currentUser.avatar_url}}" class="img-circle" width="30px" height="30px" />
+        {{ vm.currentUser.full_name }}
+        <i class="fa fa-caret-down">
+        </i>
+      </a>
+      <ul uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
+        <li role="menuitem">
+          <a>
+            Signed in as {{vm.currentUser.email}}
+          </a>
+        </li>
+        <li role="menuitem" >
+          <div ng-switch="vm.currentUser.role">
+            <a ng-switch-when="1" ui-sref="dashboard">Admin Page</a>
+            <a ng-switch-when="2" ui-sref="agent">Agent Page</a>
+            <!-- <a ng-switch-when="3">Admin Page</a> -->
+          </div>
+        </li>
+        <li class="divider">
+        </li>
+        <li role="menuitem">
+          <a href="#">
+            Your profile
+          </a>
+        </li>
+        <li role="menuitem">
+          <a href="#">
+            Settings
+          </a>
+        </li>
+        <li class="divider">
+        </li>
+        <li role="menuitem">
+          <a href="#" ng-click="vm.logout()">
+            Sign out
+          </a>
+        </li>
+      </ul>
     </li>
     <!-- /.dropdown -->
   </ul>

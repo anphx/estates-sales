@@ -2,8 +2,10 @@
   'use strict';
   angular.module('gulpGenerator').controller('DashboardController', DashboardController);
   /** @ngInject */
-  function DashboardController(DTOptionsBuilder, EstateService, DashboardService) {
+  function DashboardController(DTOptionsBuilder, EstateService, DashboardService, UserService) {
     var vm = this;
+    
+    vm.currentUser = UserService.getCurrentUser();
     
     vm.products = [];
     vm.dtOptions = DTOptionsBuilder.newOptions()
