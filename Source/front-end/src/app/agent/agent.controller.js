@@ -2,9 +2,13 @@
   'use strict';
   angular.module('gulpGenerator').controller('AgentController', AgentController);
   /** @ngInject */
-  function AgentController($scope, DTOptionsBuilder, EstateService, DashboardService) {
+  function AgentController($scope, $state, appConfig, UserService) {
     var vm = this;
     // debugger;
+    
+    if(!UserService.isLoggedIn() || UserService.getCurrentUser().role != appConfig.userRole.agent){
+      $state.go('home');
+    }
     vm.previews = [];
 
     vm.fileChanged = function(fileTag) {

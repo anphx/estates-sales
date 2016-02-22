@@ -2,11 +2,15 @@
   'use strict';
   angular.module('gulpGenerator').controller('DashboardController', DashboardController);
   /** @ngInject */
-  function DashboardController(DTOptionsBuilder, EstateService, DashboardService, UserService) {
+  function DashboardController($state, appConfig, DTOptionsBuilder, DashboardService, UserService) {
     var vm = this;
     
+    if(!UserService.isLoggedIn() || UserService.getCurrentUser().role != appConfig.userRole.admin){
+      $state.go('home');
+    }
+
     vm.currentUser = UserService.getCurrentUser();
-    
+
     vm.products = [];
     vm.dtOptions = DTOptionsBuilder.newOptions()
         .withPaginationType('simple_numbers')
