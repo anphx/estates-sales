@@ -12,7 +12,9 @@
       $sessionStorage.user = user;
       $sessionStorage.sessionId = user.auth_token;
     }
-
+    this.getSessionId = function() {
+      return $sessionStorage.sessionId;
+    }
     this.logout = function() {
       delete $sessionStorage.user;
       delete $sessionStorage.sessionId;

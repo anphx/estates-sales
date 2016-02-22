@@ -16,6 +16,13 @@
         zoom: 5
       };
     });
-    
+  
+    vm.placeOrder = function(){
+
+      EstateService.placeOrder($stateParams.id).success(function(response){
+        console.log('place order successfully.');
+        console.log(response);
+      });
+    }
   }
 })();

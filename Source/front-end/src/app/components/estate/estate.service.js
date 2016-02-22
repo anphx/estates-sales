@@ -2,7 +2,7 @@
   'use strict';
   angular.module('gulpGenerator').service('EstateService', EstateService);
   /** @ngInject */
-  function EstateService($http, appConfig) {
+  function EstateService($http, appConfig, UserService) {
     var apiName = "products/";
     this.getEstates = function(params) {
       var apiUrl = appConfig.apiBaseUri + 'products' + params;
@@ -21,5 +21,16 @@
         }
       });
     };
+
+    this.placeOrder = function(id){
+      var apiUrl = appConfig.apiBaseUri + apiName + id;
+      return $http({
+        method: 'PUT',
+        url: apiUrl,
+        headers: {
+          'auth-token': UserService.getSessionId()
+        }
+      });
+    }
   }
 })();
